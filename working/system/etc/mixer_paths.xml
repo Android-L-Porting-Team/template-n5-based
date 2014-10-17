@@ -131,6 +131,11 @@
     <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia4" value="0" />
     <ctl name="SEC_AUX_PCM_RX Audio Mixer MultiMedia4" value="0" />
     <ctl name="AUX PCM SampleRate" value="8000" />
+    <!-- echo reference -->
+    <ctl name="EC_REF_RX" value="NONE" />
+    <!-- echo reference end -->
+    <ctl name="AFE_PCM_RX_Voice Mixer CSVoice" value="0" />
+    <ctl name="Voice_Tx Mixer AFE_PCM_TX_Voice" value="0" />
 
     <!-- These are audio route (FE to BE) specific mixer settings -->
     <path name="deep-buffer-playback">
@@ -240,6 +245,17 @@
         <path name="voice-call bt-sco" />
     </path>
 
+    <path name="voice-call afe-proxy">
+        <ctl name="AFE_PCM_RX_Voice Mixer CSVoice" value="1" />
+        <ctl name="Voice_Tx Mixer AFE_PCM_TX_Voice" value="1" />
+    </path>
+
+    <path name="afe-proxy-playback afe-proxy">
+    </path>
+
+    <path name="afe-proxy-record afe-proxy">
+    </path>
+
     <!-- These are actual sound device specific mixer settings -->
     <path name="adc1">
         <ctl name="AIF1_CAP Mixer SLIM TX7" value="1"/>
@@ -314,7 +330,7 @@
 
     <path name="voice-handset">
         <path name="handset" />
-        <ctl name="RX1 Digital Volume" value="94" />
+        <ctl name="RX1 Digital Volume" value="84" />
     </path>
 
     <path name="voice-handset-tmus">
@@ -415,6 +431,10 @@
         <ctl name="SLIM_0_TX Channels" value="Two" />
     </path>
 
+    <path name="echo-reference">
+        <ctl name="EC_REF_RX" value="SLIM_RX" />
+    </path>
+
     <path name="dmic-endfire">
         <path name="speaker-dmic-endfire" />
         <ctl name="IIR1 INP1 MUX" value="DEC6" />
@@ -504,6 +524,12 @@
     </path>
 
     <path name="bt-sco-headset-wb">
+    </path>
+
+    <path name="voice-rx">
+    </path>
+
+    <path name="voice-tx">
     </path>
 
 </mixer>
